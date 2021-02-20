@@ -1699,208 +1699,208 @@ void Advanced_Report_projects_info(int user_index)
     cin.get();
     system("cls");
 
-    //گرفتن زمان
+    // //گرفتن زمان
 
-    time_t min_start_time_projects = chrono::high_resolution_clock ::to_time_t(chrono::high_resolution_clock::now());
-    for (int project_num = 0; project_num < chosen_project_NUM; project_num++)
-    {
-        int project_index = project_arry[project_num];
-        if (min_start_time_projects > min_tasks_start_time_project(user_index, project_index))
-            min_start_time_projects = min_tasks_start_time_project(user_index, project_index);
-    }
-    cout << "\n min_start_time_projects " << ctime(&min_start_time_projects);
-    time_t max_end_time_projects = 0;
-    for (int project_num = 0; project_num < chosen_project_NUM; project_num++)
-    {
-        int project_index = project_arry[project_num];
+    // time_t min_start_time_projects = chrono::high_resolution_clock ::to_time_t(chrono::high_resolution_clock::now());
+    // for (int project_num = 0; project_num < chosen_project_NUM; project_num++)
+    // {
+    //     int project_index = project_arry[project_num];
+    //     if (min_start_time_projects > min_tasks_start_time_project(user_index, project_index))
+    //         min_start_time_projects = min_tasks_start_time_project(user_index, project_index);
+    // }
+    // cout << "\n min_start_time_projects " << ctime(&min_start_time_projects);
+    // time_t max_end_time_projects = 0;
+    // for (int project_num = 0; project_num < chosen_project_NUM; project_num++)
+    // {
+    //     int project_index = project_arry[project_num];
 
-        if (max_end_time_projects < max_tasks_end_time_project(user_index, project_index))
-            max_end_time_projects = max_tasks_end_time_project(user_index, project_index);
-    }
-    cout << "\n max_end_time_projects " << ctime(&max_end_time_projects);
-    //گرفتن زمان مبدا
+    //     if (max_end_time_projects < max_tasks_end_time_project(user_index, project_index))
+    //         max_end_time_projects = max_tasks_end_time_project(user_index, project_index);
+    // }
+    // cout << "\n max_end_time_projects " << ctime(&max_end_time_projects);
+    // //گرفتن زمان مبدا
 
-    time_t bigan_time_t_, min_time_that_user_input = min_start_time_projects -= 1;
-    time_t finish_time_t_, max_time_that_user_input = max_end_time_projects + 1;
-    while (true)
-    {
-        while (true)
-        {
-            bigan_time_t_ = 0;
-            cout << "\n\t >> enter the beginning time point "
-                 << "\n ex. 2029-09-15 or 2213.12.03 or 1999/01/31 or yyyy?mm?dd "
-                 << "\n for choosing the minimum tasks time point enter '0' "
-                 << ctime(&min_start_time_projects)
-                 << "\n >> type : ";
+    // time_t bigan_time_t_, min_time_that_user_input = min_start_time_projects -= 1;
+    // time_t finish_time_t_, max_time_that_user_input = max_end_time_projects + 1;
+    // while (true)
+    // {
+    //     while (true)
+    //     {
+    //         bigan_time_t_ = 0;
+    //         cout << "\n\t >> enter the beginning time point "
+    //              << "\n ex. 2029-09-15 or 2213.12.03 or 1999/01/31 or yyyy?mm?dd "
+    //              << "\n for choosing the minimum tasks time point enter '0' "
+    //              << ctime(&min_start_time_projects)
+    //              << "\n >> type : ";
 
-            string ans;
-            cin >> ans;
-            cin.get();
-            for (int i = 0; ans[i] != '\0'; i++)
-                ans[i] -= '0';
-            if (ans[0] == 0)
-            {
-                bigan_time_t_ = min_start_time_projects;
+    //         string ans;
+    //         cin >> ans;
+    //         cin.get();
+    //         for (int i = 0; ans[i] != '\0'; i++)
+    //             ans[i] -= '0';
+    //         if (ans[0] == 0)
+    //         {
+    //             bigan_time_t_ = min_start_time_projects;
 
-                break;
-            }
-            int year_ = ans[0] * 1000 + ans[1] * 100 + ans[2] * 10 + ans[3]; //year
-            if (!(year_ > 1971) && year_ < t_this_year + 1)
-            {
-                cout << "\n\t> worng year ( " << year_ << " ) try again \n";
-                continue;
-            }
-            double tt_yy = (year_ - 1970) * 3.1556952e+7; //one year is 3.154e+7 seconds
+    //             break;
+    //         }
+    //         int year_ = ans[0] * 1000 + ans[1] * 100 + ans[2] * 10 + ans[3]; //year
+    //         if (!(year_ > 1971) && year_ < t_this_year + 1)
+    //         {
+    //             cout << "\n\t> worng year ( " << year_ << " ) try again \n";
+    //             continue;
+    //         }
+    //         double tt_yy = (year_ - 1970) * 3.1556952e+7; //one year is 3.154e+7 seconds
 
-            //ans[4] ولش
+    //         //ans[4] ولش
 
-            int month_ = ans[5] * 10 + ans[6]; //month
+    //         int month_ = ans[5] * 10 + ans[6]; //month
 
-            if (!(month_ <= 12 && month_ >= 1))
-            {
-                cout << "\n\t> worng month ( " << month_ << " ) try again \n";
-                continue;
-            }
-            double tt_mm = (month_)*2629746; //one month is 2.628e+6 second
+    //         if (!(month_ <= 12 && month_ >= 1))
+    //         {
+    //             cout << "\n\t> worng month ( " << month_ << " ) try again \n";
+    //             continue;
+    //         }
+    //         double tt_mm = (month_)*2629746; //one month is 2.628e+6 second
 
-            //ans[7]ولش
+    //         //ans[7]ولش
 
-            int day_ = ans[8] * 10 + ans[9]; //day
-            if (!(day_ <= 31 && day_ >= 0))
-            {
-                cout << "\n\t> worng day ( " << day_ << " ) try again \n";
-                continue;
-            }
+    //         int day_ = ans[8] * 10 + ans[9]; //day
+    //         if (!(day_ <= 31 && day_ >= 0))
+    //         {
+    //             cout << "\n\t> worng day ( " << day_ << " ) try again \n";
+    //             continue;
+    //         }
 
-            double tt_dd = (day_)*86400; //one day 86400 s
+    //         double tt_dd = (day_)*86400; //one day 86400 s
 
-            double tt_add = tt_yy + tt_mm + tt_dd; //ميزان كه بايد اضافه بشه
+    //         double tt_add = tt_yy + tt_mm + tt_dd; //ميزان كه بايد اضافه بشه
 
-            if (tt_add < 1)
-            {
-                cout << "\n\t> worng input try again \n";
-                continue;
-            }
+    //         if (tt_add < 1)
+    //         {
+    //             cout << "\n\t> worng input try again \n";
+    //             continue;
+    //         }
 
-            bigan_time_t_ += tt_add;
+    //         bigan_time_t_ += tt_add;
 
-            break;
-        }
+    //         break;
+    //     }
 
-        while (true)
-        {
-            finish_time_t_ = 0;
-            cout << "\n\t >> enter the finishing time point "
-                 << "\n ex. 2029-09-15 or 2213.12.03 or 1999/01/31 or yyyy?mm?dd "
-                 << "\n for choosing the maximum tasks time point enter '0' "
-                 << ctime(&max_end_time_projects)
-                 << "\n >> type : ";
+    //     while (true)
+    //     {
+    //         finish_time_t_ = 0;
+    //         cout << "\n\t >> enter the finishing time point "
+    //              << "\n ex. 2029-09-15 or 2213.12.03 or 1999/01/31 or yyyy?mm?dd "
+    //              << "\n for choosing the maximum tasks time point enter '0' "
+    //              << ctime(&max_end_time_projects)
+    //              << "\n >> type : ";
 
-            string ans;
-            cin >> ans;
-            cin.get();
-            for (int i = 0; ans[i] != '\0'; i++)
-                ans[i] -= '0';
-            if (ans[0] == 0)
-            {
-                finish_time_t_ = max_end_time_projects;
+    //         string ans;
+    //         cin >> ans;
+    //         cin.get();
+    //         for (int i = 0; ans[i] != '\0'; i++)
+    //             ans[i] -= '0';
+    //         if (ans[0] == 0)
+    //         {
+    //             finish_time_t_ = max_end_time_projects;
 
-                break;
-            }
-            int year_ = ans[0] * 1000 + ans[1] * 100 + ans[2] * 10 + ans[3]; //year
-            if (!(year_ > 1971))
-            {
-                cout << "\n\t> worng year ( " << year_ << " ) try again \n";
-                continue;
-            }
-            double tt_yy = (year_ - 1970) * 3.1556952e+7; //one year is 3.154e+7 seconds
+    //             break;
+    //         }
+    //         int year_ = ans[0] * 1000 + ans[1] * 100 + ans[2] * 10 + ans[3]; //year
+    //         if (!(year_ > 1971))
+    //         {
+    //             cout << "\n\t> worng year ( " << year_ << " ) try again \n";
+    //             continue;
+    //         }
+    //         double tt_yy = (year_ - 1970) * 3.1556952e+7; //one year is 3.154e+7 seconds
 
-            //ans[4] ولش
+    //         //ans[4] ولش
 
-            int month_ = ans[5] * 10 + ans[6]; //month
+    //         int month_ = ans[5] * 10 + ans[6]; //month
 
-            if (!(month_ <= 12 && month_ >= 1))
-            {
-                cout << "\n\t> worng month ( " << month_ << " ) try again \n";
-                continue;
-            }
-            double tt_mm = (month_)*2629746; //one month is 2.628e+6 second
+    //         if (!(month_ <= 12 && month_ >= 1))
+    //         {
+    //             cout << "\n\t> worng month ( " << month_ << " ) try again \n";
+    //             continue;
+    //         }
+    //         double tt_mm = (month_)*2629746; //one month is 2.628e+6 second
 
-            //ans[7]ولش
+    //         //ans[7]ولش
 
-            int day_ = ans[8] * 10 + ans[9]; //day
-            if (!(day_ <= 31 && day_ >= 0))
-            {
-                cout << "\n\t> worng day ( " << day_ << " ) try again \n";
-                continue;
-            }
+    //         int day_ = ans[8] * 10 + ans[9]; //day
+    //         if (!(day_ <= 31 && day_ >= 0))
+    //         {
+    //             cout << "\n\t> worng day ( " << day_ << " ) try again \n";
+    //             continue;
+    //         }
 
-            double tt_dd = (day_)*86400; //one day 86400 s
+    //         double tt_dd = (day_)*86400; //one day 86400 s
 
-            double tt_add = tt_yy + tt_mm + tt_dd; //ميزان كه بايد اضافه بشه
+    //         double tt_add = tt_yy + tt_mm + tt_dd; //ميزان كه بايد اضافه بشه
 
-            if (tt_add < 1)
-            {
-                cout << "\n\t> worng input try again \n";
-                continue;
-            }
+    //         if (tt_add < 1)
+    //         {
+    //             cout << "\n\t> worng input try again \n";
+    //             continue;
+    //         }
 
-            finish_time_t_ += tt_add;
-            break;
-        }
-        if (finish_time_t_ < bigan_time_t_)
-            cout << "\n the biganing time " << ctime(&bigan_time_t_)
-                 << " is greater than finishing time " << ctime(&finish_time_t_);
-        else
-            break;
-    }
+    //         finish_time_t_ += tt_add;
+    //         break;
+    //     }
+    //     if (finish_time_t_ < bigan_time_t_)
+    //         cout << "\n the biganing time " << ctime(&bigan_time_t_)
+    //              << " is greater than finishing time " << ctime(&finish_time_t_);
+    //     else
+    //         break;
+    // }
 
-    cout << "\n bigging time set for " << ctime(&bigan_time_t_);
-    cout << "finishing time set for " << ctime(&finish_time_t_);
-    int x;
-    string xs;
-    cout << "\n 1.month     2.day      3.hour      4.minet \n type the number :";
-    cin >> x;
-    switch (x)
-    {
-    case 1:
-        x = 2629746;
-        xs = "month";
-        break;
-    case 2:
-        x = 86400;
-        xs = "day";
-        break;
-    case 3:
-        x = 3600;
-        xs = "hour";
-        break;
-    case 4:
-        x = 60;
-        xs = "minute";
-        break;
-    default:
-        x = 2629746;
-        xs = "month";
-        break;
-    }
+    // cout << "\n bigging time set for " << ctime(&bigan_time_t_);
+    // cout << "finishing time set for " << ctime(&finish_time_t_);
+    // int x;
+    // string xs;
+    // cout << "\n 1.month     2.day      3.hour      4.minet \n type the number :";
+    // cin >> x;
+    // switch (x)
+    // {
+    // case 1:
+    //     x = 2629746;
+    //     xs = "month";
+    //     break;
+    // case 2:
+    //     x = 86400;
+    //     xs = "day";
+    //     break;
+    // case 3:
+    //     x = 3600;
+    //     xs = "hour";
+    //     break;
+    // case 4:
+    //     x = 60;
+    //     xs = "minute";
+    //     break;
+    // default:
+    //     x = 2629746;
+    //     xs = "month";
+    //     break;
+    // }
 
-    cout << emoji(42) << " time->" << xs;
-    for (int i; bigan_time_t_ < finish_time_t_; bigan_time_t_ += x, i++)
-    {
-        cout << "\n ┤ ";
-        for (int j = 0; chosen_task_project[i][j] != '\0'; j++)
-        {
-            if (finish_time_t_ <= max_tasks_end_time_project(user_index,i) && 
-            bigan_time_t_ >= min_tasks_start_time_project(user_index,i))
-            cout<<"#";
-        }
-        cout<<endl;
-    }
-    cout << "\n--------------------------------------------------" << emoji(2) << " number";
-    cout << "\n " << emoji(50) << " Click Enter to continue ...";
-    cin.get(); cin.get(); cin.get();
-    system("cls");
+    // cout << emoji(42) << " time->" << xs;
+    // for (int i; bigan_time_t_ < finish_time_t_; bigan_time_t_ += x, i++)
+    // {
+    //     cout << "\n ┤ ";
+    //     for (int j = 0; chosen_task_project[i][j] != '\0'; j++)
+    //     {
+    //         if (finish_time_t_ <= max_tasks_end_time_project(user_index,i) && 
+    //         bigan_time_t_ >= min_tasks_start_time_project(user_index,i))
+    //         cout<<"#";
+    //     }
+    //     cout<<endl;
+    // }
+    // cout << "\n--------------------------------------------------" << emoji(2) << " number";
+    // cout << "\n " << emoji(50) << " Click Enter to continue ...";
+    // cin.get(); cin.get(); cin.get();
+    // system("cls");
     cout
         << "\n done \n";
 }
